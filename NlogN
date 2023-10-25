@@ -1,0 +1,50 @@
+#include <iostream>
+#include <vector>
+#include <algorithm>
+
+using namespace std;
+
+// Функция для поиска числа в отсортированном массиве
+bool binarySearch(std::vector<int>& arr, int target) {
+    // Индексы начала и конца текущего диапазона поиска
+    int left = 0;
+    int right = arr.size() - 1;
+
+    while (left <= right) {
+        // Находим индекс середины текущего диапазона
+        int mid = left + (right - left) / 2;
+
+        // Если серединный элемент равен искомому числу, возвращаем true
+        if (arr[mid] == target)
+            return true;
+
+        // Если серединный элемент меньше искомого числа, сужаем диапазон до правой половины
+        if (arr[mid] < target)
+            left = mid + 1;
+        // Иначе сужаем диапазон до левой половины
+        else
+            right = mid - 1;
+    }
+    
+    // Число не найдено, возвращаем false
+    return false;
+}
+
+int main() {
+    vector<int> arr = {1, 2, 3, 4, 5, 6, 7, 8, 9};
+    int target = 6;
+    
+    // Сортируем массив
+    sort(arr.begin(), arr.end());
+
+    // Ищем число в отсортированном массиве
+    bool found = binarySearch(arr, target);
+
+    // Выводим результаты поиска
+    if (found)
+        cout << "Число " << target << " найдено!" << endl;
+    else 
+        cout << "Число " << target << " не найдено!" << endl;
+
+    return 0;
+}
