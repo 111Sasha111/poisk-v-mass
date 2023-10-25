@@ -1,0 +1,27 @@
+#include <iostream>
+using namespace std;
+
+int findNumber(int arr[], int n, int num) {
+for (int i = 0; i < n; i++) {
+if (arr[i] == num) {
+return i;
+}
+}
+return -1;
+}
+
+int main() {
+int arr[] = {5, 10, 15, 20, 25};
+int num = 15;
+int size = sizeof(arr) / sizeof(arr[0]);
+
+int result = findNumber(arr, size, num);
+
+if (result == -1) {
+    cout << "Number not found" << endl;
+} else {
+    cout << "Number found at index: " << result << endl;
+}
+
+return 0;
+}
